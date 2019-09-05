@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Changingtec>
+  <FTP>
+    <FTP_IP></FTP_IP>
+    <FTP_Port></FTP_Port>
+    <FTP_User></FTP_User>
+    <FTP_PWD></FTP_PWD>
+    <FTP_Remote_Path></FTP_Remote_Path>
+  </FTP>
+  <ConnectionString></ConnectionString>
+  <BatchWorkingTime Switch="Y">
+    <LastWorkingTime></LastWorkingTime>
+    <WorkingTimer>
+      <Item H="" M=""></Item>
+    </WorkingTimer>
+  </BatchWorkingTime>
+  <WorkingDate Switch="N">
+    <StartDate></StartDate>
+    <EndDate></EndDate>
+  </WorkingDate>
+  <TimerInterval>
+    <Batch></Batch>
+    <RealTime></RealTime>
+    <FTP></FTP>
+  </TimerInterval>
+</Changingtec>

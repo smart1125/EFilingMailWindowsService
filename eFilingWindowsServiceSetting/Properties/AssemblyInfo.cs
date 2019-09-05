@@ -5,24 +5,24 @@ using System.Runtime.InteropServices;
 // 組件的一般資訊是由下列的屬性集控制。
 // 變更這些屬性的值即可修改組件的相關
 // 資訊。
-[assembly: AssemblyTitle("EFilingMailWindowsService")]
+[assembly: AssemblyTitle("批次處理作業-設定介面")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("http://www.changingtec.com")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EFilingMailWindowsService")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("http://www.changingtec.com")]
+[assembly: AssemblyProduct("批次處理作業-設定介面")]
+[assembly: AssemblyCopyright("Copyright © Changingtec 2018 by ET.Chou")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// 將 ComVisible 設定為 false 會使得這個組件中的類型
+// 將 ComVisible 設定為 false 會使得這個組件中的型別
 // 對 COM 元件而言為不可見。如果您需要從 COM 存取這個組件中
-// 的類型，請在該類型上將 ComVisible 屬性設定為 true。
+// 的型別，請在該型別上將 ComVisible 屬性設定為 true。
 [assembly: ComVisible(false)]
 
 // 下列 GUID 為專案公開 (Expose) 至 COM 時所要使用的 typelib ID
-[assembly: Guid("2818ad3f-cbee-48fe-95b7-f02f0e2a87c1")]
+[assembly: Guid("8598e214-1478-495e-bde3-480f320d9802")]
 
-// 組件的版本資訊由下列四個值所組成: 
+// 組件的版本資訊是由下列四項值構成:
 //
 //      主要版本
 //      次要版本 
@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 //      修訂編號
 //
 // 您可以指定所有的值，也可以依照以下的方式，使用 '*' 將組建和修訂編號
-// 指定為預設值: 
+// 指定為預設值:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.19.9051")]
 [assembly: AssemblyFileVersion("1.0.19.9051")]
