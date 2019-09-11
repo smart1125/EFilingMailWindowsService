@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFilingMailWindowsServiceTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFilingWindowsServiceSetting", "eFilingWindowsServiceSetting\eFilingWindowsServiceSetting.csproj", "{0F78E754-A19F-498F-BC55-09C5ECFC882D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFilingConvertPDFTool", "EFilingConvertPDFTool\EFilingConvertPDFTool.csproj", "{11A55E42-1F48-4932-9272-A69A8A2B7661}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{0F78E754-A19F-498F-BC55-09C5ECFC882D}.Release|Any CPU.ActiveCfg = Release|x86
 		{0F78E754-A19F-498F-BC55-09C5ECFC882D}.Release|x86.ActiveCfg = Release|x86
 		{0F78E754-A19F-498F-BC55-09C5ECFC882D}.Release|x86.Build.0 = Release|x86
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Debug|x86.Build.0 = Debug|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Release|x86.ActiveCfg = Release|Any CPU
+		{11A55E42-1F48-4932-9272-A69A8A2B7661}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
