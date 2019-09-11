@@ -91,7 +91,7 @@ namespace eFilingWindowsServiceSetting
             {
                 if (this._XDocSetting == null)
                 {
-                    this._XDocSetting = XDocument.Load(ConfigPath.SettingDirPath);
+                    this._XDocSetting = XDocument.Load(ConfigPath.SettingPath);
                 }
                 return this._XDocSetting;
             }

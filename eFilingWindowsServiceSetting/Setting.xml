@@ -1,26 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Changingtec>
   <FTP>
-    <FTP_IP></FTP_IP>
-    <FTP_Port></FTP_Port>
-    <FTP_User></FTP_User>
-    <FTP_PWD></FTP_PWD>
-    <FTP_Remote_Path></FTP_Remote_Path>
+    <FTP_IP>192.168.8.134</FTP_IP>
+    <FTP_Port>21</FTP_Port>
+    <FTP_User>CG</FTP_User>
+    <FTP_PWD>123123</FTP_PWD>
+    <FTP_Remote_Path>/Juster</FTP_Remote_Path>
   </FTP>
-  <ConnectionString></ConnectionString>
-  <BatchWorkingTime Switch="Y">
-    <LastWorkingTime></LastWorkingTime>
-    <WorkingTimer>
-      <Item H="" M=""></Item>
-    </WorkingTimer>
-  </BatchWorkingTime>
-  <WorkingDate Switch="N">
-    <StartDate></StartDate>
-    <EndDate></EndDate>
-  </WorkingDate>
-  <TimerInterval>
-    <Batch></Batch>
-    <RealTime></RealTime>
-    <FTP></FTP>
-  </TimerInterval>
+  <TimerGroup>
+    <Timer id="1">
+      <name>Batch</name>
+      <switch>Y</switch>
+      <interval>200</interval>
+      <!--24小時制-->
+      <start>1607</start>
+      <lastWorkingTime>2019/09/04 14:38:56</lastWorkingTime>
+    </Timer>
+    <Timer id="2">
+      <name>Real</name>
+      <switch>N</switch>
+      <interval>10</interval>
+      <!--24小時制-->
+      <start>1501</start>
+      <startDate>2018/11/25 00:00:00</startDate>
+      <endDate>2018/11/30 23:59:59</endDate>
+    </Timer>
+    <Timer id="3">
+      <name>FTP</name>
+      <switch>N</switch>
+      <interval>180</interval>
+      <!--24小時制-->
+      <start>1501</start>
+    </Timer>
+  </TimerGroup>
+  <ConnectionString>aFdJVjBrWlhPbDhOQ2ZXQk42cUw3NUQvR3U5SC9aWjcybjlhcFFZMlpacjVVclBuSCtHcXprQkVFMG5PdkRzRGVwOFhNQkJoTUpEOXkvR3dFRGJLZWxWSE8vdWtpSHNOclVKaDFHQkVKOFE9</ConnectionString>
 </Changingtec>

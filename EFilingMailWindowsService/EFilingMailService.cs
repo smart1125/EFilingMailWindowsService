@@ -555,7 +555,7 @@ namespace EFilingMailWindowsService
                                 {
                                     case 9:
                                     case 11:
-                                        cif_ID = batch.T_MNEMONIC.Substring(0, batch.T_MNEMONIC.Length - 2);
+                                        cif_ID = batch.T_MNEMONIC.Substring(0, batch.T_MNEMONIC.Length - 1);
                                         break;
                                     default:
                                         cif_ID = batch.T_MNEMONIC;
@@ -602,6 +602,8 @@ namespace EFilingMailWindowsService
 
                                     content = Path.GetFileNameWithoutExtension(pdf_file_path) + ":" + cif_ID + ":" + batch.T_EMAIL_1 + ":" + batch.TXN_DATE.ToString("yyyyMMdd");
 
+                                    this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
+
                                     pdf_file_path.DeleteSigleFile();
 
                                     doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
@@ -619,7 +621,9 @@ namespace EFilingMailWindowsService
                                     pdfFileSize = 0;
                                     isPDFSizeTooLength = true;
                                 }
-                                else { isPDFSizeTooLength = false;
+                                else
+                                {
+                                    isPDFSizeTooLength = false;
                                     content = Path.GetFileNameWithoutExtension(pdf_file_path) + ":" + cif_ID + ":" + batch.T_EMAIL_1 + ":" + batch.TXN_DATE.ToString("yyyyMMdd");
                                 }
                             }
@@ -641,11 +645,15 @@ namespace EFilingMailWindowsService
                             doc.Save(pdf_file_path);
                             doc.Dispose();
 
+                            this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
+
                             streamWriter.WriteLine(content);
                         }
                     }
                    //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
                 }
+
+                streamWriter.Close();
 
                 this.WriteLastWorkingTime(utility);
             }
@@ -935,7 +943,7 @@ namespace EFilingMailWindowsService
                                     {
                                         case 9:
                                         case 11:
-                                            cif_ID = batch.T_MNEMONIC.Substring(0, batch.T_MNEMONIC.Length - 2);
+                                            cif_ID = batch.T_MNEMONIC.Substring(0, batch.T_MNEMONIC.Length - 1);
                                             break;
                                         default:
                                             cif_ID = batch.T_MNEMONIC;
@@ -1028,8 +1036,9 @@ namespace EFilingMailWindowsService
                         }
                         //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
                     }
-
+                    streamWriter.Close();
                 }
+
                 this.WriteWorkingDateSwitch(utility);
             }
             catch (System.Exception ex)
