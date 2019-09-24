@@ -40,8 +40,9 @@
     <Reference Include="DBLib">
       <HintPath>Dll\DBLib.dll</HintPath>
     </Reference>
-    <Reference Include="Log">
-      <HintPath>Dll\Log.dll</HintPath>
+    <Reference Include="Log, Version=1.0.19.9231, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Log.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />

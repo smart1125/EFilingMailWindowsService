@@ -626,6 +626,8 @@ namespace EFilingMailWindowsService
                                     fileNameCount += 1;
                                     pdfFileSize = 0;
                                     isPDFSizeTooLength = true;
+
+                                    fileNameOKCount += 1;
                                 }
                                 else
                                 {
@@ -640,7 +642,7 @@ namespace EFilingMailWindowsService
                                 utility.DBLog(SysCode.E013, "Batch", batch.T_MNEMONIC, string.Format("{0}::{1}", Path.GetFileNameWithoutExtension(pdf_file_path), ex.Message));
                             }
 
-                            fileNameOKCount += 1;
+                          
                         }
 
                         if (!isPDFSizeTooLength)
@@ -655,6 +657,7 @@ namespace EFilingMailWindowsService
 
                             this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
 
+                            fileNameOKCount += 1;
                             streamWriter.WriteLine(content);
                         }
                     }
@@ -908,10 +911,15 @@ namespace EFilingMailWindowsService
                     //if (!Directory.Exists(file_temp_dir_path)) Directory.CreateDirectory(file_temp_dir_path);
 
                     string txt_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}.txt", start_date.ToString("yyyyMMdd")));
+                    string txt_OK_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}.OK", start_date.ToString("yyyyMMdd")));
 
                     txt_file_path.DeleteSigleFile();
+                    txt_OK_file_path.DeleteSigleFile();
 
                     StreamWriter streamWriter = new StreamWriter(txt_file_path);
+                    StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path);
+
+                    int fileNameOKCount = 0;
 
                     foreach (var item in queryG)
                     {
@@ -919,10 +927,22 @@ namespace EFilingMailWindowsService
 
                         Document doc = new Document();
 
-                        string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), item.Key));
 
                         string content = string.Empty;
                         string cif_ID = string.Empty;
+
+                        switch (item.Key.Length)
+                        {
+                            case 9:
+                            case 11:
+                                cif_ID = item.Key.Substring(0, item.Key.Length - 1);
+                                break;
+                            default:
+                                cif_ID = item.Key;
+                                break;
+                        }
+
+                        string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), cif_ID));
 
                         //if (!File.Exists(pdf_file_path))
                         {
@@ -950,16 +970,6 @@ namespace EFilingMailWindowsService
                                         continue;
                                     }
 
-                                    switch (batch.T_MNEMONIC.Length)
-                                    {
-                                        case 9:
-                                        case 11:
-                                            cif_ID = batch.T_MNEMONIC.Substring(0, batch.T_MNEMONIC.Length - 1);
-                                            break;
-                                        default:
-                                            cif_ID = batch.T_MNEMONIC;
-                                            break;
-                                    }
 
                                     // Load the source image file to Stream object
                                     FileStream fs = new FileStream(file_full_path, FileMode.Open, FileAccess.Read);
@@ -995,11 +1005,13 @@ namespace EFilingMailWindowsService
                                     //大於9M的要先存檔
                                     if (pdfFileSize > 9437184)
                                     {
-                                        pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), item.Key, fileNameCount.ToString().PadLeft(3, '0')));
+                                        pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
 
                                         this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("pdfFileSize:{0}、pdf_file_path:{1}", pdfFileSize, pdf_file_path));
 
-                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + ":" + cif_ID + ":" + batch.T_EMAIL_1 + ":" + batch.TXN_DATE.ToString("yyyyMMdd");
+                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
+
+                                        this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
 
                                         pdf_file_path.DeleteSigleFile();
 
@@ -1015,13 +1027,14 @@ namespace EFilingMailWindowsService
                                         streamWriter.WriteLine(content);
 
                                         fileNameCount += 1;
+                                        fileNameOKCount += 1;
                                         pdfFileSize = 0;
                                         isPDFSizeTooLength = true;
                                     }
                                     else
                                     {
                                         isPDFSizeTooLength = false;
-                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + ":" + cif_ID + ":" + batch.T_EMAIL_1 + ":" + batch.TXN_DATE.ToString("yyyyMMdd");
+                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
                                     }
                                 }
                                 catch (System.Exception ex)
@@ -1030,11 +1043,13 @@ namespace EFilingMailWindowsService
 
                                     utility.DBLog(SysCode.E013, "Batch", batch.T_MNEMONIC, string.Format("{0}::{1}", Path.GetFileNameWithoutExtension(pdf_file_path), ex.Message));
                                 }
+
+                              
                             }
 
                             if (!isPDFSizeTooLength)
                             {
-                                pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), item.Key, fileNameCount.ToString().PadLeft(3, '0')));
+                                pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
 
                                 pdf_file_path.DeleteSigleFile();
 
@@ -1042,11 +1057,17 @@ namespace EFilingMailWindowsService
                                 doc.Save(pdf_file_path);
                                 doc.Dispose();
 
+                                this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
+                                fileNameOKCount += 1;
                                 streamWriter.WriteLine(content);
                             }
                         }
                         //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
                     }
+
+                    streamWriterOK.WriteLine(txt_file_path + "." + fileNameOKCount);
+
+                    streamWriterOK.Close();
                     streamWriter.Close();
                 }
 
