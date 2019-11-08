@@ -664,7 +664,7 @@ namespace EFilingMailWindowsService
                    //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
                 }
 
-                streamWriterOK.WriteLine(txt_file_path + "." + fileNameOKCount);
+                streamWriterOK.WriteLine(string.Format("{0}.txt", start_date.ToString("yyyyMMdd")) + "," + fileNameOKCount);
 
                 streamWriterOK.Close();
                 streamWriter.Close();
@@ -1065,7 +1065,7 @@ namespace EFilingMailWindowsService
                         //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
                     }
 
-                    streamWriterOK.WriteLine(txt_file_path + "." + fileNameOKCount);
+                    streamWriterOK.WriteLine(string.Format("{0}.txt", start_date.ToString("yyyyMMdd")) + "," + fileNameOKCount);
 
                     streamWriterOK.Close();
                     streamWriter.Close();
