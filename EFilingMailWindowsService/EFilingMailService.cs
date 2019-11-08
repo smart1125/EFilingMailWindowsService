@@ -514,8 +514,8 @@ namespace EFilingMailWindowsService
                 txt_file_path.DeleteSigleFile();
                 txt_OK_file_path.DeleteSigleFile();
 
-                StreamWriter streamWriter = new StreamWriter(txt_file_path);
-                StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path);
+                StreamWriter streamWriter = new StreamWriter(txt_file_path, true ,Encoding.Unicode);
+                StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.Unicode);
 
                 int fileNameOKCount = 0;
 
@@ -641,8 +641,6 @@ namespace EFilingMailWindowsService
 
                                 utility.DBLog(SysCode.E013, "Batch", batch.T_MNEMONIC, string.Format("{0}::{1}", Path.GetFileNameWithoutExtension(pdf_file_path), ex.Message));
                             }
-
-                          
                         }
 
                         if (!isPDFSizeTooLength)
