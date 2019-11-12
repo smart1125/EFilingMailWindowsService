@@ -514,8 +514,8 @@ namespace EFilingMailWindowsService
                 txt_file_path.DeleteSigleFile();
                 txt_OK_file_path.DeleteSigleFile();
 
-                StreamWriter streamWriter = new StreamWriter(txt_file_path, true ,Encoding.Unicode);
-                StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.Unicode);
+                StreamWriter streamWriter = new StreamWriter(txt_file_path, true ,Encoding.UTF8);
+                StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.UTF8);
 
                 int fileNameOKCount = 0;
 
