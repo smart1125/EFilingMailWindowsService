@@ -1,4 +1,4 @@
-﻿namespace eFilingWindowsServiceSetting
+﻿namespace eFilingMailServiceSetting
 {
     partial class Form1
     {

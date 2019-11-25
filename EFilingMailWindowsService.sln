@@ -7,11 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFilingMailWindowsService",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFilingMailWindowsServiceTest", "EFilingMailWindowsServiceTest\EFilingMailWindowsServiceTest.csproj", "{9CAD3895-D34C-453E-830D-24F9AEC7AE74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFilingWindowsServiceSetting", "eFilingWindowsServiceSetting\eFilingWindowsServiceSetting.csproj", "{0F78E754-A19F-498F-BC55-09C5ECFC882D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFilingMailServiceSetting", "eFilingWindowsServiceSetting\eFilingMailServiceSetting.csproj", "{0F78E754-A19F-498F-BC55-09C5ECFC882D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFilingConvertPDFTool", "EFilingConvertPDFTool\EFilingConvertPDFTool.csproj", "{11A55E42-1F48-4932-9272-A69A8A2B7661}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EFilingMailWindowsServiceSetup", "EFilingMailWindowsServiceSetup\EFilingMailWindowsServiceSetup.vdproj", "{382B7D69-5E08-4DAC-BFEC-CE3483785372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFiling", "eFiling\eFiling.csproj", "{1E44603C-53BC-451A-9B90-C9A17B051424}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,14 @@ Global
 		{382B7D69-5E08-4DAC-BFEC-CE3483785372}.Debug|x86.ActiveCfg = Debug
 		{382B7D69-5E08-4DAC-BFEC-CE3483785372}.Release|Any CPU.ActiveCfg = Release
 		{382B7D69-5E08-4DAC-BFEC-CE3483785372}.Release|x86.ActiveCfg = Release
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Debug|x86.Build.0 = Debug|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Release|x86.ActiveCfg = Release|Any CPU
+		{1E44603C-53BC-451A-9B90-C9A17B051424}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

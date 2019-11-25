@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Text;
 
-namespace eFilingWindowsServiceSetting
+namespace eFilingMailServiceSetting
 {
     class ComBox
     {

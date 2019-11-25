@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E44603C-53BC-451A-9B90-C9A17B051424}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eFiling</RootNamespace>
+    <AssemblyName>eFiling</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Pdf, Version=11.0.0.0, Culture=neutral, PublicKeyToken=6947866647e416ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="DBLib">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\DLL\DBLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Log, Version=1.0.18.1101, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OSerialize">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\DLL\OSerialize.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="XBitmap">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\DLL\XBitmap.dll</HintPath>
+    </Reference>
+    <Reference Include="XMail">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\DLL\XMail.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\EncryptKey.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\Exception\StringFormatException.cs" />
+    <Compile Include="Class\Exception\UtilityExtensions.cs" />
+    <Compile Include="Class\JSON\CLOSE_SESSION_RESPOSE.cs" />
+    <Compile Include="Class\JSON\PDF_UPLOAD_FILE_RESPOSE.cs" />
+    <Compile Include="Class\JSON\SEND_FILE_RESPOSE.cs" />
+    <Compile Include="Class\JSON\PDF_URL_RESPOSE.cs" />
+    <Compile Include="Class\JSON\PDF_BASE64_RESPOSE.cs" />
+    <Compile Include="Class\JSON\IMAGE_URL_RESPOSE.cs" />
+    <Compile Include="Class\JSON\SYSTEM_INFO_CLASS.cs" />
+    <Compile Include="Class\JSON\IMAGE_BASE64_RESPOSE.cs" />
+    <Compile Include="Class\JSON\PARSE_CASE_RESPOSE.cs" />
+    <Compile Include="Class\JSON\GET_SESSION_ID_RESPOSE.cs" />
+    <Compile Include="Class\JSON\T24UPDATE_STATE_RESPOSE.cs" />
+    <Compile Include="Class\JSON\UPLOAD_STATE_RESPOSE.cs" />
+    <Compile Include="Class\JSON\UPLOAD_FILE_RESPOSE.cs" />
+    <Compile Include="Class\SqlCommand.cs" />
+    <Compile Include="Class\SysCode.cs" />
+    <Compile Include="Class\Utility.cs" />
+    <Compile Include="CloseSession_Handler.ashx.cs">
+      <DependentUpon>CloseSession_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteIMG_Handler.ashx.cs">
+      <DependentUpon>DeleteIMG_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetPDFURL_Handler.ashx.cs">
+      <DependentUpon>GetPDFURL_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetPDFBase64_Handler.ashx.cs">
+      <DependentUpon>GetPDFBase64_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetImageBase64_Handler.ashx.cs">
+      <DependentUpon>GetImageBase64_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetImageURL_Handler.ashx.cs">
+      <DependentUpon>GetImageURL_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="PDFUploadFile_Handler.ashx.cs">
+      <DependentUpon>PDFUploadFile_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SendFile_Handler.ashx.cs">
+      <DependentUpon>SendFile_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetSessionID_Handler.ashx.cs">
+      <DependentUpon>GetSessionID_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Images_Handler.ashx.cs">
+      <DependentUpon>Images_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ParseCase_Handler.ashx.cs">
+      <DependentUpon>ParseCase_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SecurityHandler\LogSecurityHandler.ashx.cs">
+      <DependentUpon>LogSecurityHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SecurityHandler\XmlSecurityHandler.ashx.cs">
+      <DependentUpon>XmlSecurityHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="T24UpdateState_Handler.ashx.cs">
+      <DependentUpon>T24UpdateState_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateState_Handler.ashx.cs">
+      <DependentUpon>UpdateState_Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadFile_Handler.ashx.cs">
+      <DependentUpon>UploadFile_Handler.ashx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SecurityHandler\LogSecurityHandler.ashx" />
+    <Content Include="SecurityHandler\XmlSecurityHandler.ashx" />
+    <Content Include="UploadFile_Handler.ashx" />
+    <Content Include="GetImageBase64_Handler.ashx" />
+    <Content Include="GetImageURL_Handler.ashx" />
+    <Content Include="GetPDFBase64_Handler.ashx" />
+    <Content Include="GetPDFURL_Handler.ashx" />
+    <Content Include="UpdateState_Handler.ashx" />
+    <Content Include="Images_Handler.ashx" />
+    <Content Include="ParseCase_Handler.ashx" />
+    <Content Include="GetSessionID_Handler.ashx" />
+    <Content Include="SendFile_Handler.ashx" />
+    <Content Include="CloseSession_Handler.ashx" />
+    <Content Include="DeleteIMG_Handler.ashx" />
+    <Content Include="PDFUploadFile_Handler.ashx" />
+    <Content Include="T24UpdateState_Handler.ashx" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50591</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50591/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

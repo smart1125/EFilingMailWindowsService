@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eFilingWindowsServiceSetting.Properties {
+namespace eFilingMailServiceSetting.Properties {
     using System;
     
     

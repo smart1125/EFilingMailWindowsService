@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace eFilingWindowsServiceSetting
+namespace eFilingMailServiceSetting
 {
     public class ConfigPath
     {
@@ -31,7 +31,7 @@ namespace eFilingWindowsServiceSetting
                 {
                     XmlDocument xmlDoc = new XmlDocument();
 
-                    xmlDoc.LoadXml(eFilingWindowsServiceSetting.Properties.Resources.Setting);
+                    xmlDoc.LoadXml(eFilingMailServiceSetting.Properties.Resources.Setting);
 
                     xmlDoc.Save(ConfigPath._SettingPath);
                 }

@@ -13,7 +13,7 @@ using Log;
 using System.Globalization;
 using System.Xml.Linq;
 
-namespace eFilingWindowsServiceSetting
+namespace eFilingMailServiceSetting
 {
     public partial class Form1 : SkinForm
     {

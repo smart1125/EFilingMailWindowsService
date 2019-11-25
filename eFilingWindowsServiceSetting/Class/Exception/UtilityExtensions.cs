@@ -9,7 +9,7 @@ using System.Xml;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace eFilingWindowsServiceSetting
+namespace eFilingMailServiceSetting
 {
     public static class UtilityExtensions
     {

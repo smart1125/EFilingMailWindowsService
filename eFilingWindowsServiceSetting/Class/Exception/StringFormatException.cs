@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace eFilingWindowsServiceSetting
+namespace eFilingMailServiceSetting
 {
     /// <summary>
     /// 字串處理
