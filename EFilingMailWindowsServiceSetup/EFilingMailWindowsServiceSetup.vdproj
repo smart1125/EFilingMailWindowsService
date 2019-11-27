@@ -33,14 +33,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6D8790FE5910F0367CE01462F66DA7DE"
-        "OwnerKey" = "8:_9C80FD76E94D49C995DED19EF8E61212"
+        "MsmKey" = "8:_59FB6F3901AC1EEFE134DE01F27B1B43"
+        "OwnerKey" = "8:_42C1999AC60A463CB9971A39D95F38C0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9C80FD76E94D49C995DED19EF8E61212"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_6D8790FE5910F0367CE01462F66DA7DE"
+        "OwnerKey" = "8:_DA89C478C10C4F659E110DEFB0966ECF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -51,8 +51,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BD659E83E444EB184BA56DC6EE8885A4"
-        "OwnerKey" = "8:_42C1999AC60A463CB9971A39D95F38C0"
+        "MsmKey" = "8:_DA89C478C10C4F659E110DEFB0966ECF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,25 +64,31 @@
         "Entry"
         {
         "MsmKey" = "8:_E8BEFF90A1740085479C213DEAA8F442"
-        "OwnerKey" = "8:_9C80FD76E94D49C995DED19EF8E61212"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9C80FD76E94D49C995DED19EF8E61212"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4B2ABE24BE7502E3E85A079B419CB280"
+        "OwnerKey" = "8:_DA89C478C10C4F659E110DEFB0966ECF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_42C1999AC60A463CB9971A39D95F38C0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DA89C478C10C4F659E110DEFB0966ECF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6D8790FE5910F0367CE01462F66DA7DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E8BEFF90A1740085479C213DEAA8F442"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,19 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD659E83E444EB184BA56DC6EE8885A4"
+        "OwnerKey" = "8:_4B2ABE24BE7502E3E85A079B419CB280"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6D8790FE5910F0367CE01462F66DA7DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E8BEFF90A1740085479C213DEAA8F442"
+        "OwnerKey" = "8:_59FB6F3901AC1EEFE134DE01F27B1B43"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -140,6 +140,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -320,6 +328,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_59FB6F3901AC1EEFE134DE01F27B1B43"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_59FB6F3901AC1EEFE134DE01F27B1B43"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4F246EB780444505BA7D8A0CDACD31AF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6D8790FE5910F0367CE01462F66DA7DE"
             {
             "AssemblyRegister" = "3:1"
@@ -347,7 +386,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -369,37 +408,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD659E83E444EB184BA56DC6EE8885A4"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_BD659E83E444EB184BA56DC6EE8885A4"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4F246EB780444505BA7D8A0CDACD31AF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E89E3C0A86966E97C4E77610DBD17E2F"
@@ -520,15 +528,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:EFilingMailWindowsServiceSetup"
-        "ProductCode" = "8:{DE6BB091-120D-44FC-A546-8A96817527BE}"
-        "PackageCode" = "8:{F17CD570-1502-469E-BC0F-6BB7870050CC}"
+        "ProductCode" = "8:{6B6078AD-07CE-4490-BDFA-263188CE1DEB}"
+        "PackageCode" = "8:{3E0029E6-A56D-43DA-AF62-50A632DE6297}"
         "UpgradeCode" = "8:{F8C64F87-9C7E-4E8E-82AC-73429FDC05F0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.19.11263"
         "Manufacturer" = "8:Default Company Name"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1068,9 +1076,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9C80FD76E94D49C995DED19EF8E61212"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DA89C478C10C4F659E110DEFB0966ECF"
             {
-            "SourcePath" = "8:..\\eFilingWindowsServiceSetting\\obj\\x86\\Release\\eFilingWindowsServiceSetting.exe"
+            "SourcePath" = "8:..\\eFilingWindowsServiceSetting\\obj\\x86\\Release\\eFilingMailServiceSetting.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4F246EB780444505BA7D8A0CDACD31AF"

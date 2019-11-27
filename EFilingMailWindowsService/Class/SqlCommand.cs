@@ -156,17 +156,17 @@ namespace EFilingMailWindowsService
             /// <returns></returns>
             public string BATCH_CIF_INFO(string START_TXN_DATE, string END_TXN_DATE, string YM, ref List<IDataParameter> Parameters)
             {
-                string strSql = "select  ex5103.T_MNEMONIC, ex5103.T_EMAIL_SIGN_1, ex5103.T_EMAIL_1,ct.CREATE_DATETIME, ct.SESSION_KEY, ct.TXN_DATE, ct.TXN_ACCOUNT, ct.BRANCH_ID, ft.FILE_ID, ft.FILE_CREATE_DATETIME, ft.FILE_SEQ, ft.FILE_ROOT, ft.FILE_PATH, 'Y', ft.FILE_TYPE\n"
+                string strSql = "select  ex5103.T_MNEMONIC, ex5103.T_EMAIL_SIGN_1, ex5103.T_EMAIL_1,ct.CREATE_DATETIME, ct.SESSION_KEY, ct.TXN_DATE, ct.TXN_ACCOUNT, ct.BRANCH_ID, ft.FILE_ID, ft.FILE_CREATE_DATETIME, ft.FILE_SEQ, ft.FILE_ROOT, ft.FILE_PATH, 'Y' as PDF, ft.FILE_TYPE\n"
                                 + "from CASE_TABLE_{0} ct\n"
                                 + "Inner join (\n"
                                              + "select cut.T_MNEMONIC, cut.T_EMAIL_SIGN_1, cut.T_EMAIL_1, cut.RECID\n"
-                                              + "from[ODS2 - DB].[ODS2_DBU].[dbo].[CUSTOMER] cut\n"
+                                              + "from[ODS2-DB].[ODS2_DBU].[dbo].[CUSTOMER] cut\n"
                                             + " where cut.T_EMAIL_SIGN_1= '1' \n"
-                                      + "and EXISTS(Select RECID From[ODS2 - DB].[ODS2_DBU].[dbo].[TMB_CONS_STMT_CONF_C1] where CUST_ND_STMT_TYPE <> 'STMT_209')\n"
+                                      + "and EXISTS(Select RECID From[ODS2-DB].[ODS2_DBU].[dbo].[TMB_CONS_STMT_CONF_C1] where CUST_ND_STMT_TYPE <> 'STMT_209')\n"
                                    + "and len(isnull(cut.T_EMAIL_1,'')) <> 0 \n"
                                               + ") ex5103\n"
                                     + "On ct.CIF_ID = ex5103.T_MNEMONIC\n"
-                                + "Inner Join FILE_TABLE_201909 ft\n"
+                                + "Inner Join FILE_TABLE_{0} ft\n"
                                     + "on ct.SESSION_KEY = ft.SESSION_KEY\n"
                                     + "Where  ct.CHANNEL_CODE<> 'MMAB2B' and left(ct.TXN_ID, 1) not in('M', 'N', 'L') And(len(ct.TRANS_STATE) = 0 or ct.TRANS_STATE ='LIVE')\n"
                                  + "And ct.TXN_DATE >= @START_TXN_DATE And ct.TXN_DATE <= @END_TXN_DATE And ft.FILE_TYPE = 11\n"

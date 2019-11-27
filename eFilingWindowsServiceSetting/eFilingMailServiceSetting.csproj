@@ -8,8 +8,8 @@
     <ProjectGuid>{0F78E754-A19F-498F-BC55-09C5ECFC882D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>eFilingWindowsServiceSetting</RootNamespace>
-    <AssemblyName>eFilingWindowsServiceSetting</AssemblyName>
+    <RootNamespace>eFilingMailServiceSetting</RootNamespace>
+    <AssemblyName>eFilingMailServiceSetting</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

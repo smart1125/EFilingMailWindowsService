@@ -920,6 +920,49 @@ namespace eFiling
             }
             #endregion
 
+            #region CASE_TABLE_T24_TRANS_STATE()
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="YM"></param>
+            /// <param name="TRANSACTION_ID"></param>
+            /// <param name="TRANS_STATE"></param>
+            /// <param name="MODIFY_USERID"></param>
+            /// <param name="Parameters"></param>
+            /// <returns></returns>
+            public string CASE_TABLE_T24_TRANS_STATE_Trans(string YM, string TRANSACTION_ID, string TRANS_STATE, string MODIFY_USERID, string AUTHORIZE_ID, string CONFIRM_ID, string TXN_MEMO, ref List<IDataParameter> Parameters)
+            {
+                #region SQL Command
+
+                string strSql = string.Format("Update CASE_TABLE_{0} Set\n"
+                    + "	MODIFY_DATETIME = GetDate()\n"
+                    + "	,MODIFY_USERID = @MODIFY_USERID\n"
+                    + " ,TRANS_STATE = @TRANS_STATE\n"
+                    + "{1}\n"
+                    + "{2}\n"
+                    + "{3}\n"
+                    + "Where TRANSACTION_ID = @TRANSACTION_ID\n"
+                      , YM
+                      , !String.IsNullOrEmpty(AUTHORIZE_ID) ? ",AUTHORIZE_ID = @AUTHORIZE_ID,AUTHORIZE_ID_DATE = @AUTHORIZE_ID_DATE" : string.Empty
+                      , !String.IsNullOrEmpty(CONFIRM_ID) ? ",CONFIRM_ID = @CONFIRM_ID,CONFIRM_ID_DATE = @CONFIRM_ID_DATE" : string.Empty
+                      , !String.IsNullOrEmpty(TXN_MEMO) ? ",TXN_MEMO = @TXN_MEMO" : string.Empty);
+
+                #endregion
+
+                Parameters = new List<IDataParameter>();
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "TRANSACTION_ID"), TRANSACTION_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "MODIFY_USERID"), MODIFY_USERID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "TRANS_STATE"), TRANS_STATE));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "AUTHORIZE_ID"), AUTHORIZE_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "AUTHORIZE_ID_DATE"), DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "CONFIRM_ID"), CONFIRM_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "CONFIRM_ID_DATE"), DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "TXN_MEMO"), TXN_MEMO));
+
+                return strSql;
+            }
+            #endregion
+
             #region CASE_TABLE_T24_TRANS_STATE_BY_LIVE()
             /// <summary>
             /// 
@@ -1067,6 +1110,48 @@ namespace eFiling
                     + "{3}\n"
                     + "Where TRANSACTION_ID = @TRANSACTION_ID\n"
                     + "And (TRANS_STATE = '' Or TRANS_STATE Is Null Or UPPER(TRANS_STATE) = 'INAU' Or UPPER(TRANS_STATE) = 'INCF' Or UPPER(TRANS_STATE) = 'LIVE')\n"
+                      , YM
+                      , !String.IsNullOrEmpty(AUTHORIZE_ID) ? ",AUTHORIZE_ID = @AUTHORIZE_ID,AUTHORIZE_ID_DATE = @AUTHORIZE_ID_DATE" : string.Empty
+                      , !String.IsNullOrEmpty(CONFIRM_ID) ? ",CONFIRM_ID = @CONFIRM_ID,CONFIRM_ID_DATE = @CONFIRM_ID_DATE" : string.Empty
+                      , !String.IsNullOrEmpty(TXN_MEMO) ? ",TXN_MEMO = @TXN_MEMO" : string.Empty);
+                #endregion
+
+                Parameters = new List<IDataParameter>();
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "TRANSACTION_ID"), TRANSACTION_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "MODIFY_USERID"), MODIFY_USERID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "TRANS_STATE"), TRANS_STATE));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "AUTHORIZE_ID"), AUTHORIZE_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "AUTHORIZE_ID_DATE"), DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "CONFIRM_ID"), CONFIRM_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "CONFIRM_ID_DATE"), DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "TXN_MEMO"), TXN_MEMO));
+
+                return strSql;
+            }
+            #endregion
+
+            #region CASE_TABLE_T24_TRANS_STATE_BY_DELE()
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="YM"></param>
+            /// <param name="TRANSACTION_ID"></param>
+            /// <param name="TRANS_STATE"></param>
+            /// <param name="MODIFY_USERID"></param>
+            /// <param name="Parameters"></param>
+            /// <returns></returns>
+            public string CASE_TABLE_T24_TRANS_STATE_BY_DELE_Trans(string YM, string TRANSACTION_ID, string TRANS_STATE, string MODIFY_USERID, string AUTHORIZE_ID, string CONFIRM_ID, string TXN_MEMO, ref List<IDataParameter> Parameters)
+            {
+                #region SQL Command
+
+                string strSql = string.Format("Update CASE_TABLE_{0} Set\n"
+                    + "	MODIFY_DATETIME = GetDate()\n"
+                    + "	,MODIFY_USERID = @MODIFY_USERID\n"
+                    + " ,TRANS_STATE = @TRANS_STATE\n"
+                    + "{1}\n"
+                    + "{2}\n"
+                    + "{3}\n"
+                    + "Where TRANSACTION_ID = @TRANSACTION_ID\n"
                       , YM
                       , !String.IsNullOrEmpty(AUTHORIZE_ID) ? ",AUTHORIZE_ID = @AUTHORIZE_ID,AUTHORIZE_ID_DATE = @AUTHORIZE_ID_DATE" : string.Empty
                       , !String.IsNullOrEmpty(CONFIRM_ID) ? ",CONFIRM_ID = @CONFIRM_ID,CONFIRM_ID_DATE = @CONFIRM_ID_DATE" : string.Empty

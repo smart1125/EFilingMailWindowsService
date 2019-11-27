@@ -635,7 +635,7 @@ namespace EFilingMailWindowsService
                                     else
                                     {
                                         isPDFSizeTooLength = false;
-                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
+                                        content =  "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
                                     }
                                 }
                                 catch (System.Exception ex)
@@ -649,6 +649,8 @@ namespace EFilingMailWindowsService
                             if (!isPDFSizeTooLength)
                             {
                                 pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+
+                                content = content = Path.GetFileNameWithoutExtension(pdf_file_path) + content;
 
                                 pdf_file_path.DeleteSigleFile();
 
@@ -1036,7 +1038,7 @@ namespace EFilingMailWindowsService
                                     else
                                     {
                                         isPDFSizeTooLength = false;
-                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
+                                        content = "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
                                     }
                                 }
                                 catch (System.Exception ex)
@@ -1052,6 +1054,8 @@ namespace EFilingMailWindowsService
                             if (!isPDFSizeTooLength)
                             {
                                 pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+
+                                content = Path.GetFileNameWithoutExtension(pdf_file_path) + content;
 
                                 pdf_file_path.DeleteSigleFile();
 

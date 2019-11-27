@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -152,6 +153,9 @@
     <Compile Include="T24UpdateState_Handler.ashx.cs">
       <DependentUpon>T24UpdateState_Handler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="T24UpdateTransState_Handler.ashx.cs">
+      <DependentUpon>T24UpdateTransState_Handler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="UpdateState_Handler.ashx.cs">
       <DependentUpon>UpdateState_Handler.ashx</DependentUpon>
     </Compile>
@@ -176,6 +180,7 @@
     <Content Include="DeleteIMG_Handler.ashx" />
     <Content Include="PDFUploadFile_Handler.ashx" />
     <Content Include="T24UpdateState_Handler.ashx" />
+    <Content Include="T24UpdateTransState_Handler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -39,7 +39,7 @@ namespace eFilingMailServiceSetting.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("eFilingWindowsServiceSetting.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("eFilingMailServiceSetting.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,26 +61,26 @@ namespace eFilingMailServiceSetting.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///   查詢類似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;Changingtec&gt;
         ///  &lt;FTP&gt;
-        ///    &lt;FTP_IP&gt;&lt;/FTP_IP&gt;
-        ///    &lt;FTP_Port&gt;&lt;/FTP_Port&gt;
-        ///    &lt;FTP_PWD&gt;&lt;/FTP_PWD&gt;
-        ///    &lt;FTP_Remote_Path&gt;&lt;/FTP_Remote_Path&gt;
-        ///    &lt;FTP_User&gt;&lt;/FTP_User&gt;
+        ///    &lt;FTP_IP&gt;192.168.8.134&lt;/FTP_IP&gt;
+        ///    &lt;FTP_Port&gt;21&lt;/FTP_Port&gt;
+        ///    &lt;FTP_User&gt;CG&lt;/FTP_User&gt;
+        ///    &lt;FTP_PWD&gt;123123&lt;/FTP_PWD&gt;
+        ///    &lt;FTP_Remote_Path&gt;/Juster&lt;/FTP_Remote_Path&gt;
         ///  &lt;/FTP&gt;
-        ///  &lt;ConnectionString&gt;&lt;/ConnectionString&gt;
-        ///  &lt;BatchWorkingTime&gt;
-        ///    &lt;LastWorkingTime&gt;&lt;/LastWorkingTime&gt;
-        ///    &lt;WorkingTimer&gt;
-        ///      &lt;Item H=&quot;1&quot; M=&quot;0&quot;&gt;&lt;/Item&gt;
-        ///    &lt;/WorkingTimer&gt;
-        ///  &lt;/BatchWorkingTime&gt;
-        ///  &lt;WorkingDate Switch=&quot;N&quot;&gt;
-        ///    &lt;StartDate&gt;&lt;/StartDate&gt;
-        ///    &lt;EndDate&gt;&lt;/EndDate&gt;
-        ///  &lt;/Working [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        ///  &lt;TimerGroup&gt;
+        ///    &lt;Timer id=&quot;1&quot;&gt;
+        ///      &lt;name&gt;Batch&lt;/name&gt;
+        ///      &lt;switch&gt;Y&lt;/switch&gt;
+        ///      &lt;interval&gt;200&lt;/interval&gt;
+        ///      &lt;!--24小時制--&gt;
+        ///      &lt;start&gt;1607&lt;/start&gt;
+        ///      &lt;lastWorkingTime&gt;2019/09/04 14:38:56&lt;/lastWorkingTime&gt;
+        ///    &lt;/Timer&gt;
+        ///    &lt;Timer id=&quot;2&quot;&gt;
+        ///   [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
         internal static string Setting {
             get {
