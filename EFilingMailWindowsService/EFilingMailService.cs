@@ -515,8 +515,8 @@ namespace EFilingMailWindowsService
                 txt_file_path.DeleteSigleFile();
                 txt_OK_file_path.DeleteSigleFile();
 
-                using (StreamWriter streamWriter = new StreamWriter(txt_file_path, true, Encoding.UTF8),
-                                    streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.UTF8))
+                using (StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.UTF8),
+                                    streamWriter = new StreamWriter(txt_file_path, true, Encoding.UTF8))
                 {
                     //streamWriterOK.BaseStream.Write(new byte[] { 0xEF, 0xBB, 0xBF }, 0, 3);
                     //streamWriter.BaseStream.Write(new byte[] { 0xEF, 0xBB, 0xBF }, 0, 3);
@@ -669,8 +669,8 @@ namespace EFilingMailWindowsService
 
                     streamWriterOK.WriteLine(string.Format("{0}.txt", start_date.ToString("yyyyMMdd")) + "," + fileNameOKCount);
 
-                    streamWriterOK.Flush();
                     streamWriter.Flush();
+                    streamWriterOK.Flush();
                 }
 
                 this.WriteLastWorkingTime(utility);
@@ -744,7 +744,7 @@ namespace EFilingMailWindowsService
 
                 this.WriteLog(Mode.LogMode.INFO, string.Format("共有{0}個檔案準備上傳", files_PDF.Length));
 
-                Array.Sort(files_PDF, new FileSorterByCreationTime());
+                Array.Sort(files_PDF, new FileSorterByLastWriteTime());
 
                 for (int i = 0; i < files_PDF.Length; i++)
                 {
@@ -920,161 +920,162 @@ namespace EFilingMailWindowsService
                     txt_file_path.DeleteSigleFile();
                     txt_OK_file_path.DeleteSigleFile();
 
-                    StreamWriter streamWriter = new StreamWriter(txt_file_path, true, Encoding.UTF8);
-                    StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.UTF8);
-
-                    int fileNameOKCount = 0;
-
-                    foreach (var item in queryG)
+                    //StreamWriter streamWriter = new StreamWriter(txt_file_path, true, Encoding.UTF8);
+                    //StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.UTF8);
+                    using (StreamWriter streamWriterOK = new StreamWriter(txt_OK_file_path, true, Encoding.UTF8),
+                                   streamWriter = new StreamWriter(txt_file_path, true, Encoding.UTF8))
                     {
-                        this.WriteLog(Log.Mode.LogMode.INFO, string.Format("準備產生{0}", item.Key));
+                        int fileNameOKCount = 0;
 
-                        Document doc = new Document();
-
-
-                        string content = string.Empty;
-                        string cif_ID = string.Empty;
-
-                        switch (item.Key.Length)
+                        foreach (var item in queryG)
                         {
-                            case 9:
-                            case 11:
-                                cif_ID = item.Key.Substring(0, item.Key.Length - 1);
-                                break;
-                            default:
-                                cif_ID = item.Key;
-                                break;
-                        }
+                            this.WriteLog(Log.Mode.LogMode.INFO, string.Format("準備產生{0}", item.Key));
 
-                        string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), cif_ID));
+                            Document doc = new Document();
 
-                        //if (!File.Exists(pdf_file_path))
-                        {
-                            long pdfFileSize = 0;
-                            bool isPDFSizeTooLength = false;
-                            int fileNameCount = 1;
 
-                            foreach (var batch in item)
+                            string content = string.Empty;
+                            string cif_ID = string.Empty;
+
+                            switch (item.Key.Length)
                             {
-                                try
-                                {
-                                    utility.DBLog(SysCode.A010, "Batch", batch.T_MNEMONIC, string.Format("開始產生PDF:{0}", Path.GetFileNameWithoutExtension(pdf_file_path)));
-
-                                    string file_root = batch.FILE_ROOT;
-
-                                    string file_path = batch.FILE_PATH;
-
-                                    string file_full_path = file_root.FilePathCombine(file_path);
-
-                                    bool exists = File.Exists(file_full_path);
-
-                                    if (!exists)
-                                    {
-                                        this.WriteLog(Log.Mode.LogMode.ERROR, message = string.Format("SESSION_KEY:{0},CIF_ID:{1},FILE_ID:{2}::檔案不存在({3})", batch.SESSION_KEY, batch.T_MNEMONIC, batch.FILE_ID, file_full_path));
-                                        continue;
-                                    }
-
-
-                                    // Load the source image file to Stream object
-                                    FileStream fs = new FileStream(file_full_path, FileMode.Open, FileAccess.Read);
-
-                                    pdfFileSize += fs.Length;
-
-                                    byte[] tmpBytes = new byte[fs.Length];
-                                    fs.Read(tmpBytes, 0, int.Parse(fs.Length.ToString()));
-
-                                    MemoryStream mystream = new MemoryStream(tmpBytes);
-
-                                    // Instantiate BitMap object with loaded image stream
-                                    Bitmap b = new Bitmap(mystream);
-
-                                    // Add a page to pages collection of document
-                                    Page page = doc.Pages.Add();
-
-                                    // Set margins so image will fit, etc.
-                                    page.PageInfo.Margin.Bottom = 0;
-                                    page.PageInfo.Margin.Top = 0;
-                                    page.PageInfo.Margin.Left = 0;
-                                    page.PageInfo.Margin.Right = 0;
-
-                                    page.CropBox = new Aspose.Pdf.Rectangle(0, 0, b.Width, b.Height);
-                                    // Create an image object
-                                    Aspose.Pdf.Image image1 = new Aspose.Pdf.Image();
-                                    // Add the image into paragraphs collection of the section
-                                    page.Paragraphs.Add(image1);
-                                    // Set the image file stream
-                                    image1.ImageStream = mystream;
-
-                                    image1.ImageScale = 0.95F;
-                                    //大於9M的要先存檔
-                                    if (pdfFileSize > 9437184)
-                                    {
-                                        pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
-
-                                        this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("pdfFileSize:{0}、pdf_file_path:{1}", pdfFileSize, pdf_file_path));
-
-                                        content = Path.GetFileNameWithoutExtension(pdf_file_path) + "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
-
-                                        this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
-
-                                        pdf_file_path.DeleteSigleFile();
-
-                                        doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
-                                        doc.Save(pdf_file_path);
-                                        mystream.Close();
-                                        doc.Pages.Clear();
-                                        doc.Dispose();
-                                        doc = null;
-
-                                        doc = new Document();
-
-                                        streamWriter.WriteLine(content);
-
-                                        fileNameCount += 1;
-                                        fileNameOKCount += 1;
-                                        pdfFileSize = 0;
-                                        isPDFSizeTooLength = true;
-                                    }
-                                    else
-                                    {
-                                        isPDFSizeTooLength = false;
-                                        content = "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
-                                    }
-                                }
-                                catch (System.Exception ex)
-                                {
-                                    this.WriteLog(Log.Mode.LogMode.ERROR, ex.ToString());
-
-                                    utility.DBLog(SysCode.E013, "Batch", batch.T_MNEMONIC, string.Format("{0}::{1}", Path.GetFileNameWithoutExtension(pdf_file_path), ex.Message));
-                                }
-
-                              
+                                case 9:
+                                case 11:
+                                    cif_ID = item.Key.Substring(0, item.Key.Length - 1);
+                                    break;
+                                default:
+                                    cif_ID = item.Key;
+                                    break;
                             }
 
-                            if (!isPDFSizeTooLength)
+                            string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), cif_ID));
+
+                            //if (!File.Exists(pdf_file_path))
                             {
-                                pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+                                long pdfFileSize = 0;
+                                bool isPDFSizeTooLength = false;
+                                int fileNameCount = 1;
 
-                                content = Path.GetFileNameWithoutExtension(pdf_file_path) + content;
+                                foreach (var batch in item)
+                                {
+                                    try
+                                    {
+                                        utility.DBLog(SysCode.A010, "Batch", batch.T_MNEMONIC, string.Format("開始產生PDF:{0}", Path.GetFileNameWithoutExtension(pdf_file_path)));
 
-                                pdf_file_path.DeleteSigleFile();
+                                        string file_root = batch.FILE_ROOT;
 
-                                doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
-                                doc.Save(pdf_file_path);
-                                doc.Dispose();
+                                        string file_path = batch.FILE_PATH;
 
-                                this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
-                                fileNameOKCount += 1;
-                                streamWriter.WriteLine(content);
+                                        string file_full_path = file_root.FilePathCombine(file_path);
+
+                                        bool exists = File.Exists(file_full_path);
+
+                                        if (!exists)
+                                        {
+                                            this.WriteLog(Log.Mode.LogMode.ERROR, message = string.Format("SESSION_KEY:{0},CIF_ID:{1},FILE_ID:{2}::檔案不存在({3})", batch.SESSION_KEY, batch.T_MNEMONIC, batch.FILE_ID, file_full_path));
+                                            continue;
+                                        }
+                                        // Load the source image file to Stream object
+                                        FileStream fs = new FileStream(file_full_path, FileMode.Open, FileAccess.Read);
+
+                                        pdfFileSize += fs.Length;
+
+                                        byte[] tmpBytes = new byte[fs.Length];
+                                        fs.Read(tmpBytes, 0, int.Parse(fs.Length.ToString()));
+
+                                        MemoryStream mystream = new MemoryStream(tmpBytes);
+
+                                        // Instantiate BitMap object with loaded image stream
+                                        Bitmap b = new Bitmap(mystream);
+
+                                        // Add a page to pages collection of document
+                                        Page page = doc.Pages.Add();
+
+                                        // Set margins so image will fit, etc.
+                                        page.PageInfo.Margin.Bottom = 0;
+                                        page.PageInfo.Margin.Top = 0;
+                                        page.PageInfo.Margin.Left = 0;
+                                        page.PageInfo.Margin.Right = 0;
+
+                                        page.CropBox = new Aspose.Pdf.Rectangle(0, 0, b.Width, b.Height);
+                                        // Create an image object
+                                        Aspose.Pdf.Image image1 = new Aspose.Pdf.Image();
+                                        // Add the image into paragraphs collection of the section
+                                        page.Paragraphs.Add(image1);
+                                        // Set the image file stream
+                                        image1.ImageStream = mystream;
+
+                                        image1.ImageScale = 0.95F;
+                                        //大於9M的要先存檔
+                                        if (pdfFileSize > 9437184)
+                                        {
+                                            pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+
+                                            this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("pdfFileSize:{0}、pdf_file_path:{1}", pdfFileSize, pdf_file_path));
+
+                                            content = Path.GetFileNameWithoutExtension(pdf_file_path) + "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
+
+                                            this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
+
+                                            pdf_file_path.DeleteSigleFile();
+
+                                            doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
+                                            doc.Save(pdf_file_path);
+                                            mystream.Close();
+                                            doc.Pages.Clear();
+                                            doc.Dispose();
+                                            doc = null;
+
+                                            doc = new Document();
+
+                                            streamWriter.WriteLine(content);
+
+                                            fileNameCount += 1;
+                                            fileNameOKCount += 1;
+                                            pdfFileSize = 0;
+                                            isPDFSizeTooLength = true;
+                                        }
+                                        else
+                                        {
+                                            isPDFSizeTooLength = false;
+                                            content = "|" + cif_ID + "|" + batch.T_EMAIL_1 + "|" + batch.TXN_DATE.ToString("yyyyMMdd");
+                                        }
+                                    }
+                                    catch (System.Exception ex)
+                                    {
+                                        this.WriteLog(Log.Mode.LogMode.ERROR, ex.ToString());
+
+                                        utility.DBLog(SysCode.E013, "Batch", batch.T_MNEMONIC, string.Format("{0}::{1}", Path.GetFileNameWithoutExtension(pdf_file_path), ex.Message));
+                                    }
+
+
+                                }
+
+                                if (!isPDFSizeTooLength)
+                                {
+                                    pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+
+                                    content = Path.GetFileNameWithoutExtension(pdf_file_path) + content;
+
+                                    pdf_file_path.DeleteSigleFile();
+
+                                    doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
+                                    doc.Save(pdf_file_path);
+                                    doc.Dispose();
+
+                                    this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
+                                    fileNameOKCount += 1;
+                                    streamWriter.WriteLine(content);
+                                }
                             }
+                            //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
                         }
-                        //else this.WriteLog(Log.Mode.LogMode.INFO, string.Format("已存在於準備上傳，將略過 ({0})", pdf_file_path));
+
+                        streamWriterOK.WriteLine(string.Format("{0}.txt", start_date.ToString("yyyyMMdd")) + "," + fileNameOKCount);
+
+                        streamWriter.Flush();
+                        streamWriterOK.Flush();
                     }
-
-                    streamWriterOK.WriteLine(string.Format("{0}.txt", start_date.ToString("yyyyMMdd")) + "," + fileNameOKCount);
-
-                    streamWriterOK.Close();
-                    streamWriter.Close();
                 }
 
                 this.WriteWorkingDateSwitch(utility);

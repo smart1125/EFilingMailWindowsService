@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace EFilingMailWindowsService
 {
-    public class FileSorterByCreationTime : IComparer
+    public class FileSorterByLastWriteTime : IComparer
     {
         public int Compare(object x, object y)
         {
@@ -15,7 +15,7 @@ namespace EFilingMailWindowsService
             if (x == null) return -1;
             if (y == null) return 1;
             FileInfo xInfo = (FileInfo)x, yInfo = (FileInfo)y;
-            return xInfo.CreationTime.CompareTo(yInfo.CreationTime);
+            return xInfo.LastWriteTime.CompareTo(yInfo.LastWriteTime);
         }
     }
 }

@@ -76,31 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DA89C478C10C4F659E110DEFB0966ECF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6D8790FE5910F0367CE01462F66DA7DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E8BEFF90A1740085479C213DEAA8F442"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4DFEFDDD24AA1732C143C2BFAE9B340F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E89E3C0A86966E97C4E77610DBD17E2F"
+        "OwnerKey" = "8:_59FB6F3901AC1EEFE134DE01F27B1B43"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +88,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_59FB6F3901AC1EEFE134DE01F27B1B43"
+        "OwnerKey" = "8:_E89E3C0A86966E97C4E77610DBD17E2F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4DFEFDDD24AA1732C143C2BFAE9B340F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E8BEFF90A1740085479C213DEAA8F442"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6D8790FE5910F0367CE01462F66DA7DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DA89C478C10C4F659E110DEFB0966ECF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -273,11 +273,6 @@
             "AssemblyAsmDisplayName" = "8:Log, Version=1.0.19.9231, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4B2ABE24BE7502E3E85A079B419CB280"
-                    {
-                    "Name" = "8:Log.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Log.dll"
             "TargetName" = "8:"
@@ -304,11 +299,6 @@
             "AssemblyAsmDisplayName" = "8:Aspose.PDF, Version=18.8.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4DFEFDDD24AA1732C143C2BFAE9B340F"
-                    {
-                    "Name" = "8:Aspose.PDF.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Aspose.PDF.dll"
             "TargetName" = "8:"
@@ -335,11 +325,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_59FB6F3901AC1EEFE134DE01F27B1B43"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -366,11 +351,6 @@
             "AssemblyAsmDisplayName" = "8:Log, Version=1.0.18.1101, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6D8790FE5910F0367CE01462F66DA7DE"
-                    {
-                    "Name" = "8:Log.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Log.dll"
             "TargetName" = "8:"
@@ -417,11 +397,6 @@
             "AssemblyAsmDisplayName" = "8:DBLib, Version=1.0.17.6121, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E89E3C0A86966E97C4E77610DBD17E2F"
-                    {
-                    "Name" = "8:DBLib.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DBLib.dll"
             "TargetName" = "8:"
@@ -448,11 +423,6 @@
             "AssemblyAsmDisplayName" = "8:Beautify, Version=1.0.18.7251, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E8BEFF90A1740085479C213DEAA8F442"
-                    {
-                    "Name" = "8:Beautify.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Beautify.dll"
             "TargetName" = "8:"
@@ -528,15 +498,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:EFilingMailWindowsServiceSetup"
-        "ProductCode" = "8:{6B6078AD-07CE-4490-BDFA-263188CE1DEB}"
-        "PackageCode" = "8:{3E0029E6-A56D-43DA-AF62-50A632DE6297}"
+        "ProductCode" = "8:{3F5CDF1C-13F7-4905-8977-B86ABD03C9AD}"
+        "PackageCode" = "8:{75E3604C-A821-494D-A71E-C77ED7C35665}"
         "UpgradeCode" = "8:{F8C64F87-9C7E-4E8E-82AC-73429FDC05F0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.19.11263"
+        "ProductVersion" = "8:1.19.11271"
         "Manufacturer" = "8:Default Company Name"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
