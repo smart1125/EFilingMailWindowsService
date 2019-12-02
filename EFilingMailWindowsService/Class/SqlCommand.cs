@@ -166,12 +166,12 @@ namespace EFilingMailWindowsService
                                    + "and len(isnull(cut.T_EMAIL_1,'')) <> 0 \n"
                                               + ") ex5103\n"
                                     + "On ct.CIF_ID = ex5103.T_MNEMONIC\n"
-                                + "Inner Join FILE_TABLE_{0} ft\n"
-                                    + "on ct.SESSION_KEY = ft.SESSION_KEY\n"
-                                    + "Where  ct.CHANNEL_CODE<> 'MMAB2B' and left(ct.TXN_ID, 1) not in('M', 'N', 'L') And(len(ct.TRANS_STATE) = 0 or ct.TRANS_STATE ='LIVE')\n"
+                                  + "Inner Join FILE_TABLE_{0} ft\n"
+                                  + "on ct.SESSION_KEY = ft.SESSION_KEY\n"
+                                 + "Where ct.REPORT_TYPE = '水單' And ct.CHANNEL_CODE<> 'MMAB2B' and left(ct.TXN_ID, 1) not in('M', 'N', 'L') And(len(ct.TRANS_STATE) = 0 or ct.TRANS_STATE ='LIVE')\n"
                                  + "And ct.TXN_DATE >= @START_TXN_DATE And ct.TXN_DATE <= @END_TXN_DATE And ft.FILE_TYPE = 11\n"
                                  + "And NOT EXISTS(Select* From BATCH_CIF_TABLE Where CIF_ID= ct.CIF_ID)\n"
-                                + "order by CIF_ID";
+                                 + "order by CIF_ID";
 
                 Parameters = new List<IDataParameter>();
                 Parameters.Add(new SqlParameter(string.Format("@{0}", "START_TXN_DATE"), START_TXN_DATE));

@@ -434,6 +434,76 @@ namespace eFiling
             }
             #endregion
 
+            #region CASE_TABLE_T24()
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="YM"></param>
+            /// <param name="TRANSACTION_ID"></param>
+            /// <param name="Parameters"></param>
+            /// <returns></returns>
+            public string CASE_TABLE_T24_Trans(string YM, string SESSION_KEY, ref List<IDataParameter> Parameters)
+            {
+                #region SQL Command
+
+                string strSql = string.Format("Select SESSION_KEY\n"
+                    + "	,VERSION\n"
+                    + "	,TXN_ID\n"
+                    + "	,GUID\n"
+                    + "	,CHANNEL_CODE\n"
+                    + "	,TXN_TYPE\n"
+                    + "	,REPORT_TYPE\n"
+                    + "	,CASE_STATE\n"
+                    + "	,BRANCH_ID\n"
+                    + "	,CURRENCY_ID\n"
+                    + "	,TXNREF_NO\n"
+                    + "	,TRANSACTION_ID\n"
+                    + "	,USERID\n"
+                    + "	,TXN_DATE\n"
+                    + "	,CIF_ID\n"
+                    + "	,REPORT_SERIAL_NO\n"
+                    + "	,TXN_COUNT\n"
+                    + "	,DEBIT_CREDIT\n"
+                    + "	,VOUCHER_NO\n"
+                    + "	,AUTHORIZE_ID\n"
+                    + "	,CONFIRM_ID\n"
+                    + "	,TXN_MEMO\n"
+                    + "	,AUTHORIZE_ID_DATE\n"
+                    + "	,CONFIRM_ID_DATE\n"
+                    + "	,INDEX15\n"
+                    + "	,INDEX16\n"
+                    + "	,INDEX17\n"
+                    + "	,TXN_TIME\n"
+                    + "	,TXN_AMOUNT\n"
+                    + "	,DECLARANT_ID\n"
+                    + "	,TRANSACTION_TYPE\n"
+                    + "	,TXN_ACCOUNT\n"
+                    + "	,SUPERVISOR_ID\n"
+                    + "	,TRANSACTION_20\n"
+                    + "	,TRANS_STATE\n"
+                    + "	,CHARGE\n"
+                    + "	,CHARGE_DATE\n"
+                    + "	,SUPERVISOR\n"
+                    + "	,SUPERVISOR_DATE\n"
+                    + "	,MODE\n"
+                    + "	,Replace(Convert(NVarchar, CREATE_DATETIME, 120), '-', '/') As CREATE_DATETIME\n"
+                    + "	,CREATE_USERID\n"
+                    + "	,Replace(Convert(NVarchar, MODIFY_DATETIME, 120), '-', '/') As MODIFY_DATETIME\n"
+                    + "	,MODIFY_USERID\n"
+                    + "From CASE_TABLE_{0}\n"
+                    + "Where 1=1\n"
+                    + "And SESSION_KEY = @SESSION_KEY\n"
+                    , YM);
+
+                #endregion
+
+                Parameters = new List<IDataParameter>();
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "SESSION_KEY"), SESSION_KEY));
+
+                return strSql;
+            }
+            #endregion
+
             #region CASE_TABLE_T24_EXISTS()
             /// <summary>
             /// 
@@ -930,7 +1000,7 @@ namespace eFiling
             /// <param name="MODIFY_USERID"></param>
             /// <param name="Parameters"></param>
             /// <returns></returns>
-            public string CASE_TABLE_T24_TRANS_STATE_Trans(string YM, string TRANSACTION_ID, string TRANS_STATE, string MODIFY_USERID, string AUTHORIZE_ID, string CONFIRM_ID, string TXN_MEMO, ref List<IDataParameter> Parameters)
+            public string CASE_TABLE_T24_TRANS_STATE_Trans(string YM, string SESSION_KEY, string TRANS_STATE, string MODIFY_USERID, ref List<IDataParameter> Parameters)
             {
                 #region SQL Command
 
@@ -938,26 +1008,15 @@ namespace eFiling
                     + "	MODIFY_DATETIME = GetDate()\n"
                     + "	,MODIFY_USERID = @MODIFY_USERID\n"
                     + " ,TRANS_STATE = @TRANS_STATE\n"
-                    + "{1}\n"
-                    + "{2}\n"
-                    + "{3}\n"
-                    + "Where TRANSACTION_ID = @TRANSACTION_ID\n"
-                      , YM
-                      , !String.IsNullOrEmpty(AUTHORIZE_ID) ? ",AUTHORIZE_ID = @AUTHORIZE_ID,AUTHORIZE_ID_DATE = @AUTHORIZE_ID_DATE" : string.Empty
-                      , !String.IsNullOrEmpty(CONFIRM_ID) ? ",CONFIRM_ID = @CONFIRM_ID,CONFIRM_ID_DATE = @CONFIRM_ID_DATE" : string.Empty
-                      , !String.IsNullOrEmpty(TXN_MEMO) ? ",TXN_MEMO = @TXN_MEMO" : string.Empty);
+                    + "Where SESSION_KEY = @SESSION_KEY\n"
+                      , YM);
 
                 #endregion
 
                 Parameters = new List<IDataParameter>();
-                Parameters.Add(new SqlParameter(string.Format("@{0}", "TRANSACTION_ID"), TRANSACTION_ID));
+                Parameters.Add(new SqlParameter(string.Format("@{0}", "SESSION_KEY"), SESSION_KEY));
                 Parameters.Add(new SqlParameter(string.Format("@{0}", "MODIFY_USERID"), MODIFY_USERID));
                 Parameters.Add(new SqlParameter(string.Format("@{0}", "TRANS_STATE"), TRANS_STATE));
-                Parameters.Add(new SqlParameter(string.Format("@{0}", "AUTHORIZE_ID"), AUTHORIZE_ID));
-                Parameters.Add(new SqlParameter(string.Format("@{0}", "AUTHORIZE_ID_DATE"), DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
-                Parameters.Add(new SqlParameter(string.Format("@{0}", "CONFIRM_ID"), CONFIRM_ID));
-                Parameters.Add(new SqlParameter(string.Format("@{0}", "CONFIRM_ID_DATE"), DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")));
-                Parameters.Add(new SqlParameter(string.Format("@{0}", "TXN_MEMO"), TXN_MEMO));
 
                 return strSql;
             }
