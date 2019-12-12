@@ -274,7 +274,7 @@ namespace EFilingMailWindowsService
             };
             this.BATCH_CaseIDTimer.Start();
 
-            this.StartBATCH_CIF();
+            //this.StartBATCH_CIF();
 
             this.RealTimeTimer.Interval = this.RealTimeTimer_Interval;
             this.RealTimeTimer.Elapsed += delegate (Object senderWT, System.Timers.ElapsedEventArgs eWT)
@@ -283,7 +283,7 @@ namespace EFilingMailWindowsService
             };
             this.RealTimeTimer.Start();
 
-            this.StartRealTime();
+            //this.StartRealTime();
 
             this.FTPTimer.Interval = this.FTPTimer_Interval;
             this.FTPTimer.Elapsed += delegate (Object senderWT, System.Timers.ElapsedEventArgs eWT)
@@ -292,7 +292,7 @@ namespace EFilingMailWindowsService
             };
             this.FTPTimer.Start();
 
-            this.StartFTP();
+            //this.StartFTP();
         }
         #endregion
 
@@ -472,6 +472,8 @@ namespace EFilingMailWindowsService
 
                 #endregion
 
+                utility.DBConn.GeneralSqlCmd.Command.CommandTimeout = 90;
+
                 dt = utility.DBConn.GeneralSqlCmd.ExecuteToDataTable(strSql, para);
 
                 this.WriteLog(Mode.LogMode.INFO, string.Format("共有{0}筆資料", dt.Rows.Count));
@@ -527,7 +529,7 @@ namespace EFilingMailWindowsService
                     {
                         this.WriteLog(Log.Mode.LogMode.INFO, string.Format("準備產生{0}", item.Key));
 
-                        Document doc = new Document();
+                        Document docBasic = new Document();
 
                         string content = string.Empty;
                         string cif_ID = string.Empty;
@@ -581,27 +583,10 @@ namespace EFilingMailWindowsService
 
                                     MemoryStream mystream = new MemoryStream(tmpBytes);
 
-                                    // Instantiate BitMap object with loaded image stream
-                                    Bitmap b = new Bitmap(mystream);
+                                    Document docAdd = new Document(mystream);
 
-                                    // Add a page to pages collection of document
-                                    Page page = doc.Pages.Add();
+                                    docBasic.Pages.Add(docAdd.Pages);
 
-                                    // Set margins so image will fit, etc.
-                                    page.PageInfo.Margin.Bottom = 0;
-                                    page.PageInfo.Margin.Top = 0;
-                                    page.PageInfo.Margin.Left = 0;
-                                    page.PageInfo.Margin.Right = 0;
-
-                                    page.CropBox = new Aspose.Pdf.Rectangle(0, 0, b.Width, b.Height);
-                                    // Create an image object
-                                    Aspose.Pdf.Image image1 = new Aspose.Pdf.Image();
-                                    // Add the image into paragraphs collection of the section
-                                    page.Paragraphs.Add(image1);
-                                    // Set the image file stream
-                                    image1.ImageStream = mystream;
-
-                                    image1.ImageScale = 0.95F;
                                     //大於9M的要先存檔
                                     if (pdfFileSize > 9437184)
                                     {
@@ -615,14 +600,14 @@ namespace EFilingMailWindowsService
 
                                         pdf_file_path.DeleteSigleFile();
 
-                                        doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
-                                        doc.Save(pdf_file_path);
+                                        docBasic.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
+                                        docBasic.Save(pdf_file_path);
                                         mystream.Close();
-                                        doc.Pages.Clear();
-                                        doc.Dispose();
-                                        doc = null;
+                                        docBasic.Pages.Clear();
+                                        docBasic.Dispose();
+                                        docBasic = null;
 
-                                        doc = new Document();
+                                        docBasic = new Document();
 
                                         streamWriter.WriteLine(content);
 
@@ -654,9 +639,9 @@ namespace EFilingMailWindowsService
 
                                 pdf_file_path.DeleteSigleFile();
 
-                                doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
-                                doc.Save(pdf_file_path);
-                                doc.Dispose();
+                                docBasic.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
+                                docBasic.Save(pdf_file_path);
+                                docBasic.Dispose();
 
                                 this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
 
@@ -879,6 +864,8 @@ namespace EFilingMailWindowsService
 
                     #endregion
 
+                    utility.DBConn.GeneralSqlCmd.Command.CommandTimeout = 90;
+
                     dt = utility.DBConn.GeneralSqlCmd.ExecuteToDataTable(strSql, para);
 
                     this.WriteLog(Mode.LogMode.INFO, string.Format("{0}共有{1}筆資料", ym, dt.Rows.Count));
@@ -931,8 +918,7 @@ namespace EFilingMailWindowsService
                         {
                             this.WriteLog(Log.Mode.LogMode.INFO, string.Format("準備產生{0}", item.Key));
 
-                            Document doc = new Document();
-
+                            Document docBasic = new Document();
 
                             string content = string.Empty;
                             string cif_ID = string.Empty;
@@ -985,27 +971,10 @@ namespace EFilingMailWindowsService
 
                                         MemoryStream mystream = new MemoryStream(tmpBytes);
 
-                                        // Instantiate BitMap object with loaded image stream
-                                        Bitmap b = new Bitmap(mystream);
+                                        Document docAdd = new Document(mystream);
 
-                                        // Add a page to pages collection of document
-                                        Page page = doc.Pages.Add();
+                                        docBasic.Pages.Add(docAdd.Pages);
 
-                                        // Set margins so image will fit, etc.
-                                        page.PageInfo.Margin.Bottom = 0;
-                                        page.PageInfo.Margin.Top = 0;
-                                        page.PageInfo.Margin.Left = 0;
-                                        page.PageInfo.Margin.Right = 0;
-
-                                        page.CropBox = new Aspose.Pdf.Rectangle(0, 0, b.Width, b.Height);
-                                        // Create an image object
-                                        Aspose.Pdf.Image image1 = new Aspose.Pdf.Image();
-                                        // Add the image into paragraphs collection of the section
-                                        page.Paragraphs.Add(image1);
-                                        // Set the image file stream
-                                        image1.ImageStream = mystream;
-
-                                        image1.ImageScale = 0.95F;
                                         //大於9M的要先存檔
                                         if (pdfFileSize > 9437184)
                                         {
@@ -1019,14 +988,14 @@ namespace EFilingMailWindowsService
 
                                             pdf_file_path.DeleteSigleFile();
 
-                                            doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
-                                            doc.Save(pdf_file_path);
+                                            docBasic.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
+                                            docBasic.Save(pdf_file_path);
                                             mystream.Close();
-                                            doc.Pages.Clear();
-                                            doc.Dispose();
-                                            doc = null;
+                                            docBasic.Pages.Clear();
+                                            docBasic.Dispose();
+                                            docBasic = null;
 
-                                            doc = new Document();
+                                            docBasic = new Document();
 
                                             streamWriter.WriteLine(content);
 
@@ -1059,9 +1028,9 @@ namespace EFilingMailWindowsService
 
                                     pdf_file_path.DeleteSigleFile();
 
-                                    doc.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
-                                    doc.Save(pdf_file_path);
-                                    doc.Dispose();
+                                    docBasic.Encrypt(cif_ID, cif_ID, 0, CryptoAlgorithm.AESx128);
+                                    docBasic.Save(pdf_file_path);
+                                    docBasic.Dispose();
 
                                     this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("content:{0}", content));
                                     fileNameOKCount += 1;
