@@ -169,7 +169,7 @@
             this.btnStartWorking.DisableDropDownIconColor = System.Drawing.SystemColors.ControlDark;
             this.btnStartWorking.DisableFontColor = System.Drawing.SystemColors.ControlDark;
             this.btnStartWorking.ImageWidth = 18;
-            this.btnStartWorking.Location = new System.Drawing.Point(291, 668);
+            this.btnStartWorking.Location = new System.Drawing.Point(291, 593);
             this.btnStartWorking.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnStartWorking.Name = "btnStartWorking";
             this.btnStartWorking.RStyle = Beautify.SkinButton.RoundStyle.None;

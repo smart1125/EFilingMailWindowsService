@@ -534,6 +534,8 @@ namespace EFilingMailWindowsService
                         string content = string.Empty;
                         string cif_ID = string.Empty;
 
+                        cif_ID = item.Key;
+
                         switch (item.Key.Length)
                         {
                             case 9:
@@ -545,7 +547,7 @@ namespace EFilingMailWindowsService
                                 break;
                         }
 
-                        string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), cif_ID));
+                        string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, $"{start_date.ToString("yyyyMMdd")}_{item.Key}_001.pdf");
 
                         //if (!File.Exists(pdf_file_path))
                         {
@@ -590,7 +592,7 @@ namespace EFilingMailWindowsService
                                     //大於9M的要先存檔
                                     if (pdfFileSize > 9437184)
                                     {
-                                        pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+                                        pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), item.Key, fileNameCount.ToString().PadLeft(3, '0')));
 
                                         this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("pdfFileSize:{0}、pdf_file_path:{1}", pdfFileSize, pdf_file_path));
 
@@ -633,7 +635,7 @@ namespace EFilingMailWindowsService
 
                             if (!isPDFSizeTooLength)
                             {
-                                pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+                                pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), item.Key, fileNameCount.ToString().PadLeft(3, '0')));
 
                                 content = content = Path.GetFileNameWithoutExtension(pdf_file_path) + content;
 
@@ -934,7 +936,7 @@ namespace EFilingMailWindowsService
                                     break;
                             }
 
-                            string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), cif_ID));
+                            string pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_001.pdf", start_date.ToString("yyyyMMdd"), item.Key));
 
                             //if (!File.Exists(pdf_file_path))
                             {
@@ -978,7 +980,7 @@ namespace EFilingMailWindowsService
                                         //大於9M的要先存檔
                                         if (pdfFileSize > 9437184)
                                         {
-                                            pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+                                            pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), item.Key, fileNameCount.ToString().PadLeft(3, '0')));
 
                                             this.WriteLog(Log.Mode.LogMode.DEBUG, string.Format("pdfFileSize:{0}、pdf_file_path:{1}", pdfFileSize, pdf_file_path));
 
@@ -1022,7 +1024,7 @@ namespace EFilingMailWindowsService
 
                                 if (!isPDFSizeTooLength)
                                 {
-                                    pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), cif_ID, fileNameCount.ToString().PadLeft(3, '0')));
+                                    pdf_file_path = Path.Combine(ConfigPath.FtpDirPath, string.Format("{0}_{1}_{2}.pdf", start_date.ToString("yyyyMMdd"), item.Key, fileNameCount.ToString().PadLeft(3, '0')));
 
                                     content = Path.GetFileNameWithoutExtension(pdf_file_path) + content;
 
