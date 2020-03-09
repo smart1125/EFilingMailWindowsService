@@ -403,7 +403,7 @@ namespace EFilingMailWindowsService
 
         #region StartBATCH_CIF()
         /// <summary>
-        /// 
+        /// 開始枇次作業
         /// </summary>
         private void StartBATCH_CIF()
         {
@@ -795,7 +795,7 @@ namespace EFilingMailWindowsService
 
         #region StartRealTime()
         /// <summary>
-        /// 
+        /// 開始既時作業
         /// </summary>
         private void StartRealTime()
         {
